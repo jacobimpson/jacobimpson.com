@@ -1,3 +1,7 @@
+---
+
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,15 +23,14 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥕</text></svg>"
     />
     <script defer src="/_vercel/insights/script.js"></script>
-    <link rel="stylesheet" href="./src/index.css" />
   </head>
   <body>
     <p>
       Hi, my name is <strong>Jacob Impson</strong>. I am a musician and software
       engineer from Perth, Western Australia. I am currently working at
       <a rel="noopener noreferrer" href="https://linktr.ee/">Linktree</a> living
-      my teenage dream of writing front-end code for my favourite pop stars. I
-      am not a pop star, but I made myself a Linktree too, check it out
+      my teenage dream of writing front-end code for my favourite pop stars. I am
+      not a pop star, but I made myself a Linktree too, check it out
       <a rel="noopener noreferrer" href="https://linktr.ee/jacobimpson">here</a
       >.
     </p>
@@ -35,8 +38,7 @@
       I've recently started making experimental emo synth pop under the name
       <a
         rel="noopener noreferrer"
-        href="https://soundcloud.com/idontwanttobeaghost"
-        >idontwanttobeaghost</a
+        href="https://soundcloud.com/idontwanttobeaghost">idontwanttobeaghost</a
       >. I also play in a cosmic themed black metal band called
       <a rel="noopener noreferrer" href="https://doomcave.bandcamp.com/"
         >Doomcave</a
@@ -69,20 +71,101 @@
       <li>
         <a
           rel="noopener noreferrer"
-          href="https://www.linkedin.com/in/jacob-impson-au/"
-          >Linkedin</a
+          href="https://www.linkedin.com/in/jacob-impson-au/">Linkedin</a
         >
       </li>
       <li>
         <a
           rel="noopener noreferrer"
-          href="https://www.instagram.com/beingjacob_/"
-          >Instagram</a
+          href="https://www.instagram.com/beingjacob_/">Instagram</a
         >
       </li>
       <li>
         <span style="text-decoration: line-through">Twitter</span>
       </li>
     </ul>
+
+    <strong>
+      <p>Experiments</p>
+    </strong>
+    <ul>
+      <li>
+        <a href="/record-flip">FLIP animations with motion one - April 7 2024</a
+        >
+      </li>
+    </ul>
   </body>
 </html>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 24px;
+    margin: 0;
+    padding: 32px;
+    width: 940px;
+    max-width: 100vw;
+    font-family: "VT323", monospace;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #000;
+  }
+
+  a {
+    color: #ff5301;
+    text-decoration: underline;
+    transition: all ease-out;
+  }
+
+  span::selection,
+  li::selection,
+  p::selection,
+  strong::selection,
+  a::selection {
+    background: #ff5301;
+    color: #000;
+  }
+
+  a:hover,
+  a:focus,
+  a:active {
+    background: #ff5301;
+    color: #000;
+    outline: none;
+  }
+
+  ul {
+    margin: 16px 20px;
+    padding: 0;
+  }
+
+  ul li {
+    list-style-type: square;
+    line-height: 1.5;
+  }
+
+  html,
+  a {
+    cursor:
+      url("/cursor.svg") 0 0,
+      default;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 28px;
+      padding: 64px;
+    }
+
+    p {
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+  }
+</style>

@@ -1,4 +1,5 @@
-import { SpringOptions, animate, spring } from "motion";
+import { animate, spring } from "motion";
+import type { SpringOptions } from "motion";
 
 const SPRING_OPTIONS: SpringOptions = {
   mass: 1,
@@ -82,10 +83,6 @@ els.closed.wrapper.addEventListener("click", () => {
         x: [deltas.art.x, 0],
         y: [deltas.art.y, 0],
         scale: [deltas.art.scale, 1],
-        filter: [
-          "drop-shadow(0px 0px 0px rgba(6, 113, 168,0.0))",
-          "drop-shadow(0px 80px 40px rgba(6, 113, 168,0.2))",
-        ],
       },
       { easing: spring(SPRING_OPTIONS) }
     );

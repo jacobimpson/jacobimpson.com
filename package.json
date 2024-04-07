@@ -1,20 +1,21 @@
 {
-  "name": "vite-project",
-  "private": true,
-  "version": "0.0.0",
+  "name": "",
   "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.2.2",
-    "motion": "^10.17.0"
+    "@astrojs/check": "^0.5.10",
+    "astro": "^4.5.16",
+    "motion": "^10.17.0",
+    "typescript": "^5.4.4"
   },
   "devDependencies": {
-    "sass": "^1.74.1",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "sass": "^1.74.1"
   }
 }
