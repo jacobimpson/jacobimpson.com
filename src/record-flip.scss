@@ -63,7 +63,6 @@ Closed
     transform-origin: top left;
     position: relative;
     z-index: 2;
-    border: 2px solid white;
 
     img {
       position: absolute;
@@ -95,6 +94,16 @@ Closed
     }
   }
 
+  .rotation-wrapper {
+    width: 200px;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 4px;
+    position: relative;
+    border-radius: 4px;
+    position: relative;
+  }
+
   .album-details {
     display: flex;
     flex-direction: column;
@@ -102,6 +111,7 @@ Closed
     align-items: flex-start;
     padding-top: 8px;
     gap: 4px;
+    width: 100%;
   }
 
   .album-name {
@@ -127,11 +137,20 @@ Open
 */
 .open-wrapper {
   display: flex;
+  flex-direction: column;
   transition: transform 300ms ease-out;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  width: 100%;
+  height: 100dvh;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    height: auto;
+    width: auto;
+  }
 
   &:active {
     outline: none;
@@ -143,10 +162,36 @@ Open
   }
 
   .record-wrapper {
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
     position: relative;
-    left: -100px;
+    padding: 32px;
+
+    @media (min-width: 768px) {
+      padding: 0;
+      left: -100px;
+      top: 50px;
+    }
+
+    @media (min-width: 1000px) {
+      width: 400px;
+      height: 400px;
+      left: -150px;
+      top: 50px;
+    }
+  }
+
+  .rotation-wrapper {
+    width: 250px;
+    height: 250px;
+    border: 2px solid white;
+    border-radius: 8px;
+    position: relative;
+
+    @media (min-width: 1000px) {
+      width: 400px;
+      height: 400px;
+    }
   }
 
   .record {
@@ -154,11 +199,9 @@ Open
     height: 100%;
     width: 100%;
     border-radius: 8px;
-    z-index: 1;
     transform-origin: top left;
     z-index: 2;
     position: relative;
-    border: 2px solid white;
 
     img {
       width: 100%;
@@ -175,18 +218,24 @@ Open
     }
 
     .record-vinyl {
-      width: 390px;
-      height: 390px;
+      width: 245px;
+      height: 245px;
       border-radius: 100%;
       background-color: black;
       position: absolute;
       z-index: 0;
-      top: 0px;
       right: 0;
       z-index: 0;
       background-image: url("/public/vinyl.png");
       background-size: cover;
       transform-origin: center;
+      top: 3px;
+
+      @media (min-width: 1000px) {
+        top: 0px;
+        width: 390px;
+        height: 390px;
+      }
     }
   }
 
@@ -206,6 +255,7 @@ Open
     gap: 4px;
     padding: 32px;
     z-index: 1;
+    min-width: 268px;
   }
 
   .album-name {
@@ -227,9 +277,10 @@ Open
 
   .track-list {
     text-align: left;
-    padding-left: 16px;
+    padding: 16px;
     padding-top: 24px;
     margin: 0;
+    width: calc(100% - 32px);
 
     li {
       border-bottom: 1px solid #ddd;
@@ -243,19 +294,41 @@ Open
   }
 }
 
-.toggle {
-  position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 16px 32px;
-  border-radius: 8px;
+.close-button {
+  width: 32px;
+  height: 32px;
+  top: 16px;
+  right: 16px;
+  border-radius: 100%;
   font-size: 16px;
   outline: none;
   border: none;
   background: #ddd;
   color: black;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  position: fixed;
+
+  @media (min-width: 768px) {
+    position: absolute;
+    top: -32px;
+    right: -32px;
+  }
+
+  svg {
+    opacity: 0.6;
+    width: 16px;
+    height: 16px;
+
+    @media (min-width: 768px) {
+      width: 24px;
+      height: 24px;
+    }
+  }
 }
 
 button {
@@ -266,14 +339,23 @@ button {
 
 .message {
   position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 16px;
   border-radius: 8px;
-  font-size: 16px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 2px solid white;
+  font-size: 14px;
+  background: white;
   color: black;
   box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  width: 100%;
+  padding: 8px;
+  z-index: 99;
+
+  @media (min-width: 768px) {
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.5);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    bottom: 32px;
+    width: 768px;
+  }
 }

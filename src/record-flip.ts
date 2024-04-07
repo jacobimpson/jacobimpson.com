@@ -2,8 +2,8 @@ import { SpringOptions, animate, spring } from "motion";
 
 const SPRING_OPTIONS: SpringOptions = {
   mass: 1,
-  stiffness: 120,
-  damping: 19,
+  stiffness: 100,
+  damping: 17,
 };
 
 const getEl = (selector: string) =>
@@ -14,6 +14,7 @@ const els = {
   toggleButton: getEl(".toggle") as HTMLButtonElement,
   closed: {
     wrapper: getEl(".closed-wrapper"),
+    rotation: getEl(".closed-wrapper .rotation-wrapper"),
     art: getEl(".closed-wrapper .record"),
     name: getEl(".closed-wrapper .album-name"),
     artist: getEl(".closed-wrapper .artist-name"),
@@ -21,6 +22,7 @@ const els = {
   },
   open: {
     wrapper: getEl(".open-wrapper"),
+    rotation: getEl(".open-wrapper .rotation-wrapper"),
     art: getEl(".open-wrapper .record"),
     name: getEl(".open-wrapper .album-name"),
     artist: getEl(".open-wrapper .artist-name"),
@@ -68,14 +70,21 @@ els.closed.wrapper.addEventListener("click", () => {
       },
     };
     animate(
+      els.open.rotation,
+      {
+        rotate: [0, -4],
+      },
+      { easing: spring(SPRING_OPTIONS) }
+    );
+    animate(
       els.open.art,
       {
         x: [deltas.art.x, 0],
         y: [deltas.art.y, 0],
         scale: [deltas.art.scale, 1],
         filter: [
-          "drop-shadow(0px 0px 0px rgba(0,0,0,0))",
-          "drop-shadow(0px 80px 40px rgba(0,0,0,0.2))",
+          "drop-shadow(0px 0px 0px rgba(6, 113, 168,0.0))",
+          "drop-shadow(0px 80px 40px rgba(6, 113, 168,0.2))",
         ],
       },
       { easing: spring(SPRING_OPTIONS) }
@@ -114,95 +123,116 @@ els.closed.wrapper.addEventListener("click", () => {
       },
       { delay: 0.2, easing: spring(SPRING_OPTIONS) }
     );
+    animate(
+      ".close-button",
+      {
+        opacity: [0, 1],
+        scale: [0, 1],
+      },
+      { delay: 0.2, easing: spring(SPRING_OPTIONS) }
+    );
   });
 });
 
 //
 // close
 //
-els.open.wrapper.addEventListener("click", async () => {
-  const fromPos = {
-    wrapper: els.open.wrapper.getBoundingClientRect(),
-    art: els.open.art.getBoundingClientRect(),
-    name: els.open.name.getBoundingClientRect(),
-    artist: els.open.artist.getBoundingClientRect(),
-  };
+document
+  ?.querySelector(".close-button")
+  ?.addEventListener("click", async () => {
+    const fromPos = {
+      wrapper: els.open.wrapper.getBoundingClientRect(),
+      art: els.open.art.getBoundingClientRect(),
+      name: els.open.name.getBoundingClientRect(),
+      artist: els.open.artist.getBoundingClientRect(),
+    };
 
-  await animate(
-    els.open.trackList,
-    {
+    animate(".close-button", {
       opacity: [1, 0],
-    },
-    { easing: "linear", duration: 0.1 }
-  ).finished;
+      scale: [1, 0],
+    });
+    await animate(
+      els.open.trackList,
+      {
+        opacity: [1, 0],
+      },
+      { easing: "linear", duration: 0.1 }
+    ).finished;
 
-  els.main.classList.remove("open");
-  els.main.classList.add("closed");
+    els.main.classList.remove("open");
+    els.main.classList.add("closed");
 
-  requestAnimationFrame(() => {
-    const toPos = {
-      wrapper: els.closed.wrapper.getBoundingClientRect(),
-      art: els.closed.art.getBoundingClientRect(),
-      name: els.closed.name.getBoundingClientRect(),
-      artist: els.closed.artist.getBoundingClientRect(),
-    };
-    const deltas = {
-      art: {
-        x: fromPos.art.left - toPos.art.left,
-        y: fromPos.art.top - toPos.art.top,
-        scale: fromPos.art.width / toPos.art.width,
-      },
-      name: {
-        x: fromPos.name.left - toPos.name.left,
-        y: fromPos.name.top - toPos.name.top,
-        scale: fromPos.name.width / toPos.name.width,
-      },
-      artist: {
-        x: fromPos.artist.left - toPos.artist.left,
-        y: fromPos.artist.top - toPos.artist.top,
-        scale: fromPos.artist.width / toPos.artist.width,
-      },
-    };
-    animate(
-      els.closed.art,
-      {
-        x: [deltas.art.x, 0],
-        y: [deltas.art.y, 0],
-        scale: [deltas.art.scale, 1],
-      },
-      {
-        easing: spring(SPRING_OPTIONS),
-      }
-    );
-    animate(
-      els.closed.name,
-      {
-        x: [deltas.name.x, 0],
-        y: [deltas.name.y, 0],
-        scale: [deltas.name.scale, 1],
-      },
-      {
-        easing: spring(SPRING_OPTIONS),
-      }
-    );
-    animate(
-      els.closed.artist,
-      {
-        x: [deltas.artist.x, 0],
-        y: [deltas.artist.y, 0],
-        scale: [deltas.artist.scale, 1],
-      },
-      {
-        easing: spring(SPRING_OPTIONS),
-      }
-    );
-    animate(
-      els.closed.vinyl,
-      {
-        x: [50, 0],
-        rotate: [0, 360],
-      },
-      {}
-    );
+    requestAnimationFrame(() => {
+      const toPos = {
+        wrapper: els.closed.wrapper.getBoundingClientRect(),
+        art: els.closed.art.getBoundingClientRect(),
+        name: els.closed.name.getBoundingClientRect(),
+        artist: els.closed.artist.getBoundingClientRect(),
+      };
+      const deltas = {
+        art: {
+          x: fromPos.art.left - toPos.art.left,
+          y: fromPos.art.top - toPos.art.top,
+          scale: fromPos.art.width / toPos.art.width,
+        },
+        name: {
+          x: fromPos.name.left - toPos.name.left,
+          y: fromPos.name.top - toPos.name.top,
+          scale: fromPos.name.width / toPos.name.width,
+        },
+        artist: {
+          x: fromPos.artist.left - toPos.artist.left,
+          y: fromPos.artist.top - toPos.artist.top,
+          scale: fromPos.artist.width / toPos.artist.width,
+        },
+      };
+      animate(
+        els.closed.art,
+        {
+          x: [deltas.art.x, 0],
+          y: [deltas.art.y, 0],
+          scale: [deltas.art.scale, 1],
+        },
+        {
+          easing: spring(SPRING_OPTIONS),
+        }
+      );
+      animate(
+        els.closed.rotation,
+        {
+          rotate: [-4, 0],
+        },
+        { easing: spring(SPRING_OPTIONS) }
+      );
+      animate(
+        els.closed.name,
+        {
+          x: [deltas.name.x, 0],
+          y: [deltas.name.y, 0],
+          scale: [deltas.name.scale, 1],
+        },
+        {
+          easing: spring(SPRING_OPTIONS),
+        }
+      );
+      animate(
+        els.closed.artist,
+        {
+          x: [deltas.artist.x, 0],
+          y: [deltas.artist.y, 0],
+          scale: [deltas.artist.scale, 1],
+        },
+        {
+          easing: spring(SPRING_OPTIONS),
+        }
+      );
+      animate(
+        els.closed.vinyl,
+        {
+          x: [50, 0],
+          rotate: [0, 360],
+        },
+        {}
+      );
+    });
   });
-});
