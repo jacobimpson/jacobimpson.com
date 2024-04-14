@@ -2,18 +2,22 @@ import { useEffect, useLayoutEffect, useRef, type FC } from "react";
 import car from "./car.jpg";
 
 const transitionValues = {
-  easing: `linear(0, 0.007, 0.027 2.3%, 0.11, 0.218 7.6%, 0.588 15.5%, 0.695, 0.784, 0.858, 0.918, 0.965 28.6%, 1 31.5%, 1.02, 1.033 36.2%, 1.041 38.9%, 1.043 41.9%, 1.038 47%, 1.011 61.3%, 1.003 69%, 0.998 80%, 0.999)`,
-  duration: 700,
+  easing: `var(--power-1-out)`,
+  duration: 175,
 };
 
 const transition = `transform ${transitionValues.duration}ms ${transitionValues.easing}`;
 const transformReset = `translate(0,0) scale(1)`;
 
 const ListItem: FC<{
+  title: string;
+  subtitle: string;
+  price: string;
+  faster?: boolean;
   onClick: () => void;
   openId: number;
   id: number;
-}> = ({ id, onClick, openId }) => {
+}> = ({ id, onClick, openId, title, subtitle, price, faster }) => {
   const containerRef = useRef<HTMLLIElement>();
   const currentRectContainer = useRef<DOMRect>();
   const innerRef = useRef<HTMLDivElement>();
@@ -77,7 +81,6 @@ const ListItem: FC<{
         redBoxRef.current.style.transform = `translate(${redBoxDelta.x}px, ${redBoxDelta.y}px) scale(${redBoxDelta.scale})`;
         textRef.current.style.transform = `translate(${textDelta.x}px, ${textDelta.y}px)`;
         priceRef.current.style.transform = `translateY(${priceDelta.y}px)`;
-
         requestAnimationFrame(() => {
           containerRef.current.style.transition = transition;
           innerRef.current.style.transition = transition;
@@ -115,7 +118,7 @@ const ListItem: FC<{
           <div ref={innerRef} className="inner flex w-full flex-col">
             <div
               ref={redBoxRef}
-              className="w-32 h-32 m-auto aspect-square origin-top-left"
+              className="w-32 h-[102px] m-auto aspect-square origin-top-left"
             >
               <img alt="" src={car.src} className="mix-blend-multiply" />
             </div>
@@ -124,15 +127,19 @@ const ListItem: FC<{
                 className="flex flex-col justify-start items-start"
                 ref={textRef}
               >
-                <p className="text-xl font-bold">Line one</p>
-                <p className="text-slate-700">Line two</p>
-                <p>Line three</p>
+                <p className="text-base font-semibold">{title}</p>
+                <p className="text-slate-700 mb-[4px] text-sm">{subtitle}</p>
+                {faster && (
+                  <div className="bg-blue-500 text-white rounded-sm py-[3px] px-[6px] text-[12px] font-semibold">
+                    Faster
+                  </div>
+                )}
               </div>
               <div
                 ref={priceRef}
                 className="justify-end self-start grow text-right font-semibold text-sm"
               >
-                $50.00
+                {price}
               </div>
             </div>
           </div>
@@ -144,12 +151,12 @@ const ListItem: FC<{
     <li ref={containerRef} className="origin-top relative">
       <button
         onClick={onClick}
-        className="p-4 rounded-lg cursor-pointer overflow-visible w-full ring-0 ring-transparent bg-white transition"
+        className="cursor-pointer overflow-visible w-full bg-white p-4"
       >
-        <div ref={innerRef} className="inner flex gap-4 w-full">
+        <div ref={innerRef} className="inner flex gap-4 w-full items-center">
           <div
             ref={redBoxRef}
-            className="w-20 h-20 aspect-square origin-top-left flex items-center justify-center"
+            className="w-20 h-16 aspect-square origin-top-left flex items-center justify-center"
           >
             <img alt="" src={car.src} className="mix-blend-multiply" />
           </div>
@@ -157,17 +164,19 @@ const ListItem: FC<{
             className="flex flex-col justify-start items-start leading-4"
             ref={textRef}
           >
-            <p className="text-base font-semibold">Line one</p>
-            <p className="text-slate-700 mb-2 text-sm">Line two</p>
-            <div className="bg-blue-100 text-blue-800 rounded-md py-1 px-2 text-xs font-semibold">
-              Faster
-            </div>
+            <p className="text-base font-semibold">{title}</p>
+            <p className="text-slate-700 mb-[4px] text-sm">{subtitle}</p>
+            {faster && (
+              <div className="bg-blue-500 text-white rounded-sm py-[3px] px-[6px] text-[12px] font-semibold">
+                Faster
+              </div>
+            )}
           </div>
           <div
             ref={priceRef}
             className="justify-end self-start grow text-right font-semibold text-sm"
           >
-            $50.00
+            {price}
           </div>
         </div>
       </button>

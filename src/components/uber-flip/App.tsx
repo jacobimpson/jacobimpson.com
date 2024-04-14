@@ -14,13 +14,32 @@ const App: FC = () => {
   };
 
   return (
-    <ul className="flex flex-col gap-2 ">
-      <ListItem onClick={() => toggleOpen(1)} id={1} openId={openId} />
-      <ListItem onClick={() => toggleOpen(2)} id={2} openId={openId} />
-      <ListItem onClick={() => toggleOpen(3)} id={3} openId={openId} />
-      {/* <ListItem onClick={() => toggleOpen(4)} id={4} openId={openId} /> */}
-      {/* <ListItem onClick={() => toggleOpen(5)} id={5} openId={openId} /> */}
-      {/* <ListItem onClick={() => toggleOpen(6)} id={6} openId={openId} /> */}
+    <ul className="flex flex-col gap-2">
+      <ListItem
+        title="Business Comfort"
+        subtitle="4:46pm · 4 min away"
+        price="$53.82"
+        onClick={() => toggleOpen(1)}
+        id={1}
+        openId={openId}
+      />
+      <ListItem
+        title="UberX"
+        subtitle="4:46pm · 3 min away"
+        price="$45.59"
+        faster
+        onClick={() => toggleOpen(2)}
+        id={2}
+        openId={openId}
+      />
+      <ListItem
+        title="UberXL"
+        subtitle="4:46pm · 4 min away"
+        price="$75.33"
+        onClick={() => toggleOpen(3)}
+        id={3}
+        openId={openId}
+      />
     </ul>
   );
 };
