@@ -322,9 +322,10 @@ Open
       z-index: 1;
       min-width: 268px;
       padding: 16px;
+      padding-top: 64px;
 
-      @media (min-width: 768px) {
-        padding: 32px;
+      @media (min-width: 1024px) {
+        padding: 0;
       }
     }
 
@@ -334,6 +335,7 @@ Open
       font-weight: 800;
       transform-origin: top left;
       padding-left: 16px;
+      white-space: nowrap;
 
       @media (min-width: 768px) {
         font-size: 32px; // from 16
@@ -355,10 +357,15 @@ Open
       margin: 0;
       width: calc(100% - 32px);
 
+      @media (min-width: 1024px) {
+        width: 100%;
+      }
+
       li {
         border-bottom: 1px solid #ddd;
         padding: 8px 0;
         opacity: 0.6;
+        white-space: nowrap;
 
         &:last-child {
           border-bottom: none;
