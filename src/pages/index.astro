@@ -35,30 +35,40 @@
       <p>
         Howdy, I am a musician and software engineer from Perth, Western
         Australia. Currently working at
-        <a rel="noopener noreferrer" href="https://linktr.ee/">Linktree</a>,
-        living my teenage dream of writing front-end code for my favourite pop
-        stars. I am not a pop star, but I made myself a Linktree too, check it
-        out
-        <a rel="noopener noreferrer" href="https://linktr.ee/jacobimpson"
-          >here</a
+        <a rel="noopener noreferrer" target="_blank" href="https://linktr.ee/"
+          >Linktree</a
+        >, living my teenage dream of writing front-end code for my favourite
+        pop stars. I am not a pop star, but I made myself a Linktree too, check
+        it out
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://linktr.ee/jacobimpson">here</a
         >.
       </p>
       <p>
         I've recently started making experimental emo synth pop under the name
         <a
           rel="noopener noreferrer"
+          target="_blank"
           href="https://soundcloud.com/idontwanttobeaghost"
           >idontwanttobeaghost</a
         >. I also play in a cosmic themed black metal band called
-        <a rel="noopener noreferrer" href="https://doomcave.bandcamp.com/"
-          >Doomcave</a
-        >, and in a pop punk band called
         <a
-          style="text-decoration: line-through"
           rel="noopener noreferrer"
-          href="https://beingbeta.bandcamp.com/album/system-not-anymore"
-          >Being Beta</a
-        >, but we've been fairly inactive lately.
+          target="_blank"
+          href="https://doomcave.bandcamp.com/">Doomcave</a
+        >,
+
+        <span style="text-decoration: line-through">
+          and in a pop punk band called
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://beingbeta.bandcamp.com/album/system-not-anymore"
+            >Being Beta</a
+          >, but we've been fairly inactive lately.
+        </span>
       </p>
       <p>
         Oh, and I built this vegan recipe app called Plantree a few years ago,
@@ -72,23 +82,28 @@
           style="text-decoration: line-through"
           href="https://play.google.com/store/apps/details?id=com.jacobimpson.plantree&hl=en_US&gl=US"
           >Android</a
-        >.
+        > (stopped paying the Play Store fees so this one went down, people still
+        use it though).
       </p>
       <ul>
         <li>
-          <a rel="noopener noreferrer" href="https://linktr.ee/jacobimpson"
-            >Linktree</a
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://linktr.ee/jacobimpson">Linktree</a
           >
         </li>
         <li>
           <a
             rel="noopener noreferrer"
+            target="_blank"
             href="https://www.linkedin.com/in/jacob-impson-au/">Linkedin</a
           >
         </li>
         <li>
           <a
             rel="noopener noreferrer"
+            target="_blank"
             href="https://www.instagram.com/beingjacob_/">Instagram</a
           >
         </li>
@@ -98,12 +113,12 @@
         <li>
           <a
             rel="noopener noreferrer"
+            target="_blank"
             href="https://www.threads.net/@beingjacob_">Threads</a
           > (this is where I'm trying to build some kind of design/eng/FE audience)
         </li>
       </ul>
     </section>
-
     <section class="experiments">
       <h2>Front-End Experiments 🧪✨</h2>
       <p>
@@ -141,8 +156,12 @@
   * {
     box-sizing: border-box;
   }
+  html {
+    background-attachment: fixed;
+  }
+
   body {
-    background: #fef0f3;
+    background-image: linear-gradient(312deg, #ffeff3 10%, white);
     font-size: 16px;
     margin: 0;
     padding: 32px;
@@ -265,7 +284,6 @@
     }
 
     --shadow-color: 357deg 30% 77%;
-
     box-shadow:
       1px 1px 1.1px hsl(var(--shadow-color) / 0.33),
       1.1px 1.1px 1.2px -0.7px hsl(var(--shadow-color) / 0.28),
