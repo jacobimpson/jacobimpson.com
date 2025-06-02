@@ -27,9 +27,6 @@
   <body>
     <canvas id="image-fragments" class="image-fragments"></canvas>
 
-    <!-- Mobile 3D showcase area -->
-    <div class="mobile-showcase"></div>
-
     <section class="main">
       <header>
         <h1>Jacob Impson</h1>
@@ -37,7 +34,7 @@
       </header>
 
       <p>
-        Howdy, I am a musician and software engineer from Perth, Western
+        Hey, I am a musician and software engineer from Perth, Western
         Australia. Currently working at
         <a rel="noopener noreferrer" target="_blank" href="https://linktr.ee/"
           >Linktree</a
@@ -281,21 +278,12 @@
     text-decoration: underline;
   }
 
-  /* Mobile 3D showcase area */
-  .mobile-showcase {
-    height: 100px;
-    width: 100%;
-    position: relative;
-    display: block;
-  }
-
   /* Main content container */
   .main {
     // max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 0;
-    margin-bottom: 32px;
+    // margin-bottom: 32px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -310,7 +298,7 @@
   }
 
   /* Compact contact section styling */
-  section:last-of-type {
+  section.project-showcase {
     // margin-bottom: 16px;
 
     p {
@@ -323,7 +311,7 @@
   @media (min-width: 480px) {
     .main {
       padding: 24px;
-      padding-top: 0;
+      // padding-top: 0;
       margin-bottom: 40px;
     }
 
@@ -341,10 +329,6 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 40px;
-    }
-
-    .mobile-showcase {
-      display: none;
     }
 
     .main {
@@ -507,33 +491,6 @@
     margin: 0;
     font-size: 14px;
     text-align: left;
-  }
-
-  @media (min-width: 480px) {
-    .seo-dump {
-      padding-left: 0;
-      padding-right: 0;
-      padding-top: 42px;
-    }
-
-    // .contact {
-    //   padding: 0 24px;
-    //   margin-bottom: 12px;
-    //   margin-top: 20px;
-    // }
-  }
-
-  @media (min-width: 768px) {
-    .seo-dump {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    // .contact {
-    //   padding: 0;
-    //   margin-bottom: 16px;
-    //   margin-top: 24px;
-    // }
   }
 
   .profile-container {

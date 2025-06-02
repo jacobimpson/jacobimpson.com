@@ -197,7 +197,8 @@ function initialize3DPaintBlobs(canvas: HTMLCanvasElement): void {
   function createPaintShapes(): void {
     console.log("Creating 3D paint shapes...");
 
-    // Use mobile logic for all screen sizes
+    // Check screen size for positioning
+    const isMobile = window.innerWidth < 768;
     const showcaseArea = document.querySelector(".mobile-showcase");
 
     // Create a big corner shape for all devices (top right)
@@ -208,9 +209,17 @@ function initialize3DPaintBlobs(canvas: HTMLCanvasElement): void {
     const cornerShape = new THREE.Mesh(cornerGeometry, cornerMaterial);
 
     // Position in top right corner of screen
-    cornerShape.position.x = 3.5; // Positioned for visibility
-    cornerShape.position.y = 6; // High up
-    cornerShape.position.z = 1; // Very close to camera for prominence
+    if (isMobile) {
+      // Mobile: far right positioning
+      cornerShape.position.x = 5; // Further right for mobile
+      cornerShape.position.y = 7; // Higher up
+      cornerShape.position.z = 1; // Close to camera
+    } else {
+      // Desktop: moderate right positioning
+      cornerShape.position.x = 3.5; // Positioned for visibility
+      cornerShape.position.y = 6; // High up
+      cornerShape.position.z = 1; // Very close to camera for prominence
+    }
 
     // Make it large and imposing
     const cornerScale = 3.5 + Math.random() * 0.5; // Consistently large
@@ -250,9 +259,17 @@ function initialize3DPaintBlobs(canvas: HTMLCanvasElement): void {
       const shape = new THREE.Mesh(geometry, material);
 
       // Position prominently in showcase area
-      shape.position.x = (Math.random() - 0.5) * 10; // Slightly less spread to avoid corner
-      shape.position.y = 4 + Math.random() * 4; // Much higher up for prominent display
-      shape.position.z = -2 + Math.random() * 6; // Closer to camera
+      if (isMobile) {
+        // Mobile: concentrate in top right area
+        shape.position.x = 2 + Math.random() * 4; // Right side only (2 to 6)
+        shape.position.y = 5 + Math.random() * 3; // High up (5 to 8)
+        shape.position.z = -1 + Math.random() * 3; // Close to camera (-1 to 2)
+      } else {
+        // Desktop: spread across top area
+        shape.position.x = (Math.random() - 0.5) * 10; // Slightly less spread to avoid corner
+        shape.position.y = 4 + Math.random() * 4; // Much higher up for prominent display
+        shape.position.z = -2 + Math.random() * 6; // Closer to camera
+      }
 
       // Much larger scale for visual impact
       const scale = 2.0 + Math.random() * 1.5; // Way bigger shapes
